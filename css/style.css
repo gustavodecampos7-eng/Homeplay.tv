@@ -1,0 +1,133 @@
+/* Estilo geral */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+}
+
+/* Cabeçalho */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #111;
+  border-bottom: 2px solid #222;
+}
+
+.logo {
+  height: 50px;
+}
+
+.menu a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+.menu a:hover {
+  color: #ff0000;
+}
+
+/* Banner */
+.banner {
+  padding: 40px 20px;
+  background: linear-gradient(to right, #000, #111);
+  color: #fff;
+}
+
+.banner h1 {
+  font-size: 28px;
+  color: #ff0000;
+}
+
+.banner p {
+  font-size: 18px;
+  color: #00aaff;
+}
+
+/* Botões principais */
+.acoes {
+  margin: 30px 0;
+}
+
+.btn {
+  display: block;
+  margin: 10px auto;
+  padding: 15px 20px;
+  max-width: 300px;
+  background: #ff0000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background: #00aaff;
+}
+
+/* Planos */
+.planos {
+  padding: 30px 20px;
+}
+
+.planos h2 {
+  margin-bottom: 20px;
+  color: #00aaff;
+}
+
+.plano {
+  margin: 20px 0;
+  padding: 15px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+}
+
+.plano img {
+  margin-top: 10px;
+  max-width: 200px;
+}
+
+/* Suporte */
+.suporte {
+  padding: 30px 20px;
+  background: #111;
+}
+
+.suporte h2 {
+  color: #ff0000;
+}
+
+.icons img {
+  width: 60px;
+  margin: 10px;
+}
+
+/* Botões flutuantes */
+.btn-whatsapp, .btn-telegram {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+.btn-whatsapp {
+  bottom: 90px;
+}
+
+.btn-whatsapp img,
+.btn-telegram img {
+  width: 40px;
+  height: 40px;
+}
