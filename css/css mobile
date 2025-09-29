@@ -1,0 +1,100 @@
+/* Reset */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+
+/* Logo */
+.logo {
+  width: 180px;
+  margin: 15px auto;
+  display: block;
+}
+
+/* Banners */
+.banners {
+  position: relative;
+  width: 100%;
+  max-height: 250px;
+  overflow: hidden;
+}
+.banners img {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  animation: slideShow 9s infinite;
+}
+.banners img:nth-child(1) { animation-delay: 0s; }
+.banners img:nth-child(2) { animation-delay: 3s; }
+.banners img:nth-child(3) { animation-delay: 6s; }
+
+@keyframes slideShow {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  30% { opacity: 1; }
+  40% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* Botões principais */
+.acoes {
+  margin: 25px 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.acoes img {
+  width: 70px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.acoes img:hover {
+  transform: scale(1.1);
+}
+
+/* Planos */
+.planos {
+  margin: 25px 0;
+}
+.planos img {
+  width: 180px;
+  margin: 8px;
+}
+.planos h3 {
+  margin: 8px 0;
+  color: #ff4444;
+}
+
+/* Rodapé */
+footer {
+  margin: 30px 0 15px;
+  font-size: 13px;
+  color: #aaa;
+}
+
+/* 📱 Responsividade */
+@media (max-width: 768px) {
+  .logo {
+    width: 150px;
+  }
+  .banners {
+    max-height: 180px;
+  }
+  .banners img {
+    max-height: 180px;
+  }
+  .acoes img {
+    width: 60px;
+  }
+  .planos img {
+    width: 140px;
+  }
+}
