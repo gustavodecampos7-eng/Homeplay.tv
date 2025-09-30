@@ -36,7 +36,7 @@
       background: rgba(0,0,0,0.85);
       padding: 15px;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
     }
     header h1 {
@@ -46,6 +46,16 @@
       text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff;
     }
     header h1 span { color: blue; }
+    header nav button {
+      margin-left: 10px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .watch-btn { background: #fff; color: #000; }
+    .subscribe-btn { background: red; color: #fff; }
 
     /* Login */
     .login {
@@ -98,9 +108,9 @@
     .pay-btn { background: rgba(255,255,255,0.9); color: #000; }
 
     /* Cores modernas */
-    .mensal { background: rgba(255, 99, 71, 0.25); }      /* vermelho suave */
-    .semestral { background: rgba(30, 144, 255, 0.25); }  /* azul moderno */
-    .anual { background: rgba(50, 205, 50, 0.25); }       /* verde claro */
+    .mensal { background: rgba(255, 99, 71, 0.25); }
+    .semestral { background: rgba(30, 144, 255, 0.25); }
+    .anual { background: rgba(50, 205, 50, 0.25); }
 
     /* Flutuantes */
     .floating {
@@ -128,6 +138,10 @@
 <body>
   <header>
     <h1>Home<span>play</span></h1>
+    <nav>
+      <button class="watch-btn" onclick="window.open('http://starweb.webplayer.one','_blank')">Assista agora</button>
+      <button class="subscribe-btn" onclick="window.open('https://wa.me/5544999285482','_blank')">Assine já</button>
+    </nav>
   </header>
 
   <!-- Banner -->
