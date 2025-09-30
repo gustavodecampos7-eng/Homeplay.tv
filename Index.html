@@ -1,231 +1,262 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Homeplay</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
+    :root{
+      --bg:#000;
+      --text:#ffffff;
+      --accent-red: rgba(255,99,71,1);
+      --accent-blue: rgba(30,144,255,1);
     }
-    body {
-      color: #fff;
-      text-align: center;
-      background: #000;
-      overflow-x: hidden;
-    }
-
-    /* Banner Rotativo */
-    .banner {
-      position: relative;
-      width: 100%;
-      height: 300px;
-      overflow: hidden;
-    }
-    .banner img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: none;
-    }
-    .banner img.active {
-      display: block;
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      -webkit-font-smoothing:antialiased;
+      text-align:center;
+      line-height:1.4;
     }
 
-    /* Cabeçalho */
-    header {
-      background: rgba(0, 0, 0, 0.8);
-      padding: 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    /* header */
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:14px 18px;
+      background:rgba(0,0,0,0.85);
+      position:sticky;
+      top:0;
+      z-index:40;
     }
-    header h1 {
-      font-size: 26px;
-      font-weight: bold;
-      color: red;
-      text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff;
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
     }
-    header h1 span {
-      color: blue;
+    .logo-box{
+      width:44px;height:44px;border-radius:8px;
+      background:linear-gradient(135deg,var(--accent-red),var(--accent-blue));
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 4px 8px rgba(0,0,0,0.5);
+      border:3px solid rgba(255,255,255,0.06);
     }
-    header nav button {
-      margin-left: 10px;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 5px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .watch-btn { background: #fff; color: #000; }
-    .subscribe-btn { background: red; color: #fff; }
+    .logo-box svg{width:26px;height:26px}
+    h1{font-size:20px;color:var(--text)}
+    h1 span{color:var(--accent-blue);font-weight:800}
 
-    /* Formulário de teste */
-    .login {
-      background: rgba(0, 0, 0, 0.8);
-      padding: 20px;
-      margin: 20px;
-      border-radius: 10px;
+    nav{display:flex;gap:10px;align-items:center}
+    .btn{
+      padding:8px 14px;border-radius:8px;border:0;font-weight:700;cursor:pointer;
+      box-shadow:0 6px 14px rgba(0,0,0,0.45);
     }
-    .login h2 { margin-bottom: 15px; }
-    .login input {
-      display: block;
-      width: 90%;
-      margin: 10px auto;
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
+    .watch-btn{background:#fff;color:#000}
+    .subscribe-btn{background:linear-gradient(90deg, rgba(255,60,60,0.95), rgba(200,30,120,0.95)); color:#fff}
+
+    /* banner rotativo simples */
+    .banner{width:100%;height:300px;overflow:hidden;position:relative}
+    .banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease}
+    .banner img.active{opacity:1}
+
+    /* login/teste */
+    .login{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      max-width:720px;margin:18px auto;padding:18px;border-radius:12px;
+      border:1px solid rgba(255,255,255,0.04);
+      backdrop-filter: blur(6px);
     }
-    .login button {
-      background: blue;
-      color: #fff;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+    .login h2{font-size:18px;margin-bottom:10px}
+    .login input{
+      width:92%;max-width:520px;padding:12px;border-radius:8px;border:0;margin:8px auto;display:block;background:rgba(255,255,255,0.03);color:var(--text)
+    }
+    .login .activate{
+      margin-top:8px;background:linear-gradient(90deg,var(--accent-red),var(--accent-blue));color:#fff;
+      border-radius:8px;padding:12px 18px;font-weight:700;border:0;cursor:pointer;
+    }
+    #mensagem{margin-top:10px;color:#ffd54d;font-weight:600}
+
+    /* planos */
+    .plans{padding:20px 16px}
+    .plans h2{margin-bottom:12px;font-size:18px}
+    .plan-list{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+    .plan{
+      width:320px;max-width:92%;
+      border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 8px 20px rgba(0,0,0,0.5);
+      color:var(--text);
+      display:flex;flex-direction:column;align-items:center;
+      transition:transform .18s ease, box-shadow .18s ease;
+      backdrop-filter: blur(4px);
+    }
+    .plan:hover{ transform:translateY(-6px); box-shadow:0 16px 28px rgba(0,0,0,0.6) }
+
+    .plan h3{font-size:20px;margin-bottom:6px}
+    .plan p{margin-bottom:12px;color:rgba(255,255,255,0.85)}
+
+    /* cores modernas com transparência */
+    .mensal{
+      background: linear-gradient(135deg, rgba(255,99,71,0.11), rgba(255,99,71,0.05));
+      border:1px solid rgba(255,99,71,0.18);
+    }
+    .semestral{
+      background: linear-gradient(135deg, rgba(30,144,255,0.11), rgba(30,144,255,0.05));
+      border:1px solid rgba(30,144,255,0.18);
+    }
+    .anual{
+      background: linear-gradient(135deg, rgba(80,80,90,0.26), rgba(40,40,48,0.12));
+      border:1px solid rgba(255,255,255,0.06);
+      position:relative;
+      overflow:hidden;
+    }
+    /* detalhe anual com tiras sutis vermelho/azul */
+    .anual::before{
+      content:"";position:absolute;left:12px;top:12px;width:6px;height:calc(100% - 24px);
+      background:linear-gradient(180deg, rgba(255,99,71,0.8), rgba(255,99,71,0.3));border-radius:4px;
+    }
+    .anual::after{
+      content:"";position:absolute;right:12px;top:12px;width:6px;height:calc(100% - 24px);
+      background:linear-gradient(180deg, rgba(30,144,255,0.8), rgba(30,144,255,0.25));border-radius:4px;
     }
 
-    /* Planos */
-    .plans {
-      padding: 20px;
+    .plan .assine, .plan .pay{
+      width:88%;padding:12px;border-radius:10px;border:0;margin-bottom:8px;font-weight:700;cursor:pointer;
     }
-    .plan {
-      background: rgba(255,255,255,0.08);
-      margin: 15px auto;
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 350px;
-      backdrop-filter: blur(8px);
-    }
-    .plan h3 { margin-bottom: 10px; color: #ff4d4d; }
-    .plan p { margin: 5px 0; }
-    .plan button {
-      margin: 8px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .whatsapp-btn { background: #25d366cc; color: #fff; }
-    .pay-btn { background: #009ee3cc; color: #fff; }
+    .plan .assine{ background: linear-gradient(90deg, rgba(255,80,80,0.95), rgba(220,40,120,0.95)); color:#fff }
+    .plan .pay{ background: rgba(255,255,255,0.92); color:#111 }
 
-    /* Botões flutuantes */
-    .floating {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .floating a img {
-      width: 55px;
-      height: 55px;
-      border-radius: 50%;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      background: #fff;
-      padding: 5px;
+    /* flutuantes */
+    .floating{position:fixed;right:16px;bottom:18px;display:flex;flex-direction:column;gap:10px;z-index:60}
+    .floating a img{width:56px;height:56px;border-radius:50%;box-shadow:0 6px 16px rgba(0,0,0,0.45);background:#fff;padding:6px}
+
+    /* responsivo */
+    @media (max-width:880px){
+      .banner{height:220px}
+      .banner img{height:220px}
+      header{padding:12px}
+      .plan{width:92%}
     }
   </style>
 </head>
 <body>
+
   <header>
-    <h1>Home<span>play</span></h1>
+    <div class="brand">
+      <div class="logo-box" aria-hidden="true">
+        <!-- ícone simples casinha + play -->
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M3 11.5L12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-8.5z" fill="#fff" opacity="0.9"/>
+          <path d="M10 9v6l5-3-5-3z" fill="rgba(0,0,0,0.85)"/>
+        </svg>
+      </div>
+      <h1>Home<span>play</span></h1>
+    </div>
+
     <nav>
-      <button class="watch-btn">Assista agora</button>
-      <button class="subscribe-btn">Assine já</button>
+      <button class="btn watch-btn" onclick="window.open('http://starweb.webplayer.one','_blank')">Assista agora</button>
+      <button class="btn subscribe-btn" onclick="document.querySelector('.plans').scrollIntoView({behavior:'smooth'})">Assine já</button>
     </nav>
   </header>
 
-  <!-- Banner Rotativo -->
-  <section class="banner">
-    <img src="https://image.tmdb.org/t/p/original/3V4kLQg0kSqPLctI5ziYWabAZYF.jpg" class="active" alt="Banner 1">
-    <img src="https://image.tmdb.org/t/p/original/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg" alt="Banner 2">
-    <img src="https://image.tmdb.org/t/p/original/5YZbUmjbMa3ClvSW1Wj3D6XGolb.jpg" alt="Banner 3">
-    <img src="https://image.tmdb.org/t/p/original/cSYLX73WskxCgvpN3MtRkYUSj1T.jpg" alt="Banner 4">
+  <!-- banner rotativo -->
+  <section class="banner" aria-hidden="false">
+    <img src="https://image.tmdb.org/t/p/w780/3V4kLQg0kSqPLctI5ziYWabAZYF.jpg" class="active" alt="">
+    <img src="https://image.tmdb.org/t/p/w780/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg" alt="">
+    <img src="https://image.tmdb.org/t/p/w780/5YZbUmjbMa3ClvSW1Wj3D6XGolb.jpg" alt="">
   </section>
 
-  <!-- Login / Teste -->
-  <section class="login">
-    <h2>Login / Teste gratuito — 6 horas</h2>
-    <input type="text" id="nome" placeholder="Nome completo" required>
-    <input type="tel" id="telefone" placeholder="(44) 99928-5482" required>
-    <button onclick="ativarTeste()">Ativar Teste 6h</button>
-    <p id="mensagem" style="margin-top:10px;color:yellow;"></p>
+  <!-- login/teste -->
+  <section class="login" aria-label="Login e teste gratuito">
+    <h2>Teste gratuito — 6 horas</h2>
+    <input id="nome" placeholder="Nome completo" type="text" />
+    <input id="telefone" placeholder="(44) 99928-5482" type="tel" />
+    <button class="activate" onclick="ativarTeste()">Ativar Teste 6h</button>
+    <p id="mensagem" aria-live="polite"></p>
   </section>
 
   <!-- Planos -->
   <section class="plans">
-    <h2>Planos de Assinatura / Renovação</h2>
+    <h2>Planos de Assinatura</h2>
+    <div class="plan-list">
+      <article class="plan mensal" aria-labelledby="mensal-title">
+        <h3 id="mensal-title">Plano Mensal</h3>
+        <p><strong>R$ 19,90</strong> • 1 mês</p>
+        <button class="assine" onclick="window.open('https://wa.me/5544999285482','_blank')">Assine já</button>
+        <button class="pay" onclick="window.open('https://mpago.la/25CCQgV','_blank')">MercadoPago</button>
+      </article>
 
-    <div class="plan">
-      <h3>Plano Mensal</h3>
-      <p><strong>R$ 19,90</strong></p>
-      <p>1 mês • Renovação manual/automática</p>
-      <button class="whatsapp-btn" onclick="window.open('https://wa.me/5544999285482','_blank')">Assine já</button>
-      <button class="pay-btn" onclick="window.open('https://mpago.la/25CCQgV','_blank')">MercadoPago</button>
-    </div>
+      <article class="plan semestral" aria-labelledby="semestral-title">
+        <h3 id="semestral-title">Plano Semestral</h3>
+        <p><strong>R$ 100,00</strong> • 6 meses</p>
+        <button class="assine" onclick="window.open('https://wa.me/5544999285482','_blank')">Assine já</button>
+        <button class="pay" onclick="window.open('https://mpago.la/2HKEXeN','_blank')">MercadoPago</button>
+      </article>
 
-    <div class="plan">
-      <h3>Plano Semestral</h3>
-      <p><strong>R$ 100,00</strong></p>
-      <p>6 meses • Renovação automática</p>
-      <button class="whatsapp-btn" onclick="window.open('https://wa.me/5544999285482','_blank')">Assine já</button>
-      <button class="pay-btn" onclick="window.open('https://mpago.la/2HKEXeN','_blank')">MercadoPago</button>
-    </div>
-
-    <div class="plan">
-      <h3>Plano Anual</h3>
-      <p><strong>R$ 180,00</strong></p>
-      <p>12 meses • Renovação automática</p>
-      <button class="whatsapp-btn" onclick="window.open('https://wa.me/5544999285482','_blank')">Assine já</button>
-      <button class="pay-btn" onclick="window.open('https://mpago.la/1zaQU6s','_blank')">MercadoPago</button>
+      <article class="plan anual" aria-labelledby="anual-title">
+        <h3 id="anual-title">Plano Anual</h3>
+        <p><strong>R$ 180,00</strong> • 12 meses</p>
+        <button class="assine" onclick="window.open('https://wa.me/5544999285482','_blank')">Assine já</button>
+        <button class="pay" onclick="window.open('https://mpago.la/1zaQU6s','_blank')">MercadoPago</button>
+      </article>
     </div>
   </section>
 
-  <!-- Botões Flutuantes -->
-  <div class="floating">
-    <a href="https://wa.me/5544999285482" target="_blank">
+  <!-- flutuantes -->
+  <div class="floating" aria-hidden="false">
+    <a href="https://wa.me/5544999285482" target="_blank" title="WhatsApp">
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
-    <a href="https://t.me/seuTelegram" target="_blank">
+    <a href="https://t.me/homeplaytv" target="_blank" title="Telegram">
       <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
     </a>
   </div>
 
   <script>
-    // Rotação do banner
-    let banners = document.querySelectorAll('.banner img');
-    let index = 0;
-    setInterval(() => {
-      banners[index].classList.remove('active');
-      index = (index + 1) % banners.length;
-      banners[index].classList.add('active');
-    }, 4000);
+    /* banner rotativo */
+    (function(){
+      const imgs = document.querySelectorAll('.banner img');
+      let i = 0;
+      setInterval(()=> {
+        imgs[i].classList.remove('active');
+        i = (i+1) % imgs.length;
+        imgs[i].classList.add('active');
+      }, 4000);
+    })();
 
-    // Ativar teste + redirecionar para WhatsApp
-    function ativarTeste() {
-      const telefone = document.getElementById("telefone").value;
-      let testes = localStorage.getItem(telefone) || 0;
-      testes = parseInt(testes);
+    /* util: normaliza telefone (apenas dígitos) */
+    function normalizePhone(s){
+      if(!s) return '';
+      return s.replace(/\D/g,'');
+    }
 
-      if (testes >= 2) {
-        document.getElementById("mensagem").innerText = "Você já usou os 2 testes disponíveis.";
-      } else {
-        testes++;
-        localStorage.setItem(telefone, testes);
-        document.getElementById("mensagem").innerText = "Teste ativado com sucesso! ("+testes+"/2)";
-
-        // Redireciona para WhatsApp
-        window.open(
-          "https://wa.me/5544999285482?text=Ol%C3%A1%2C+gostaria+de+fazer+um+teste+gratuito+de+6h+na+Homeplay.",
-          "_blank"
-        );
+    /* Ativar teste: 2 por telefone + abrir WhatsApp com mensagem */
+    function ativarTeste(){
+      const telefoneRaw = document.getElementById('telefone').value || '';
+      const telefone = normalizePhone(telefoneRaw);
+      const nome = (document.getElementById('nome').value || '').trim();
+      if(!telefone){
+        document.getElementById('mensagem').textContent = 'Digite um número de telefone válido.';
+        return;
       }
+      const key = 'homeplay_test_count_'+telefone;
+      let count = parseInt(localStorage.getItem(key) || '0', 10);
+      if(count >= 2){
+        document.getElementById('mensagem').textContent = 'Você já usou os 2 testes disponíveis.';
+        // abrir WhatsApp para assistência (cliente tentou de novo)
+        window.open('https://wa.me/5544999285482?text=' + encodeURIComponent('Olá, tentei ativar um novo teste mas já usei os 2 testes permitidos. Preciso de ajuda.'), '_blank');
+        return;
+      }
+      count++;
+      localStorage.setItem(key, String(count));
+      document.getElementById('mensagem').textContent = 'Teste ativado com sucesso! ('+count+'/2)';
+
+      // abrir whatsapp com mensagem pronta informando nome e telefone (se preenchidos)
+      let message = 'Olá, gostaria de fazer um teste gratuito de 6h na Homeplay.';
+      if(nome) message += ' Nome: ' + nome + '.';
+      if(telefone) message += ' Telefone: ' + telefone + '.';
+      window.open('https://wa.me/5544999285482?text=' + encodeURIComponent(message), '_blank');
     }
   </script>
 </body>
