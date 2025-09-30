@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homeplay</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white">
+
+  <!-- Header -->
+  <header class="flex items-center justify-between p-4 bg-black shadow-md">
+    <div class="flex items-center space-x-2">
+      <span class="text-2xl">🏠▶️</span>
+      <h1 class="text-xl font-bold">
+        <span class="text-red-500">Home</span><span class="text-blue-500">play</span>
+      </h1>
+    </div>
+    <a href="https://wa.me/5544999285482" target="_blank" 
+       class="bg-red-600 text-white px-4 py-2 rounded-lg">Assine agora</a>
+  </header>
+
+  <!-- Banner Rotativo -->
+  <div class="relative w-full h-64 md:h-96 overflow-hidden">
+    <img id="banner" src="https://image.tmdb.org/t/p/original/6DrHO1jr3qVrViUO6s6kFiAGM7.jpg" 
+         class="w-full h-full object-cover transition-opacity duration-700">
+  </div>
+
+  <!-- Login / Teste gratuito -->
+  <section class="p-6 text-center">
+    <h2 class="text-2xl font-bold mb-4">Login / Teste gratuito 6h</h2>
+    <form id="testeForm" class="max-w-md mx-auto space-y-4">
+      <input type="text" id="nome" placeholder="Nome" required
+             class="w-full p-2 rounded text-black">
+      <input type="tel" id="telefone" placeholder="Telefone" required
+             class="w-full p-2 rounded text-black">
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg w-full">
+        Ativar Teste 6h
+      </button>
+    </form>
+  </section>
+
+  <!-- Planos de Assinatura -->
+  <section class="p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">Planos de Assinatura</h2>
+    <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      <!-- Plano 1 mês -->
+      <div class="bg-gray-900 p-6 rounded-2xl shadow-lg text-center">
+        <h3 class="text-xl font-bold mb-2">1 Mês</h3>
+        <p class="text-2xl mb-4">R$ 19,90</p>
+        <a href="https://wa.me/5544999285482?text=Quero%20assinar%20o%20plano%20de%201%20mês" 
+           target="_blank" class="bg-red-600 px-4 py-2 rounded-lg block mb-3">Assine já</a>
+        <img src="https://i.imgur.com/TxhW9rL.png" alt="QR Code 1 mês" class="mx-auto w-32">
+      </div>
+      <!-- Plano 6 meses -->
+      <div class="bg-gray-900 p-6 rounded-2xl shadow-lg text-center">
+        <h3 class="text-xl font-bold mb-2">6 Meses</h3>
+        <p class="text-2xl mb-4">R$ 100,00</p>
+        <a href="https://wa.me/5544999285482?text=Quero%20assinar%20o%20plano%20de%206%20meses" 
+           target="_blank" class="bg-red-600 px-4 py-2 rounded-lg block mb-3">Assine já</a>
+        <img src="https://i.imgur.com/fLQbEJR.png" alt="QR Code 6 meses" class="mx-auto w-32">
+      </div>
+      <!-- Plano 12 meses -->
+      <div class="bg-gray-900 p-6 rounded-2xl shadow-lg text-center">
+        <h3 class="text-xl font-bold mb-2">12 Meses</h3>
+        <p class="text-2xl mb-4">R$ 180,00</p>
+        <a href="https://wa.me/5544999285482?text=Quero%20assinar%20o%20plano%20de%2012%20meses" 
+           target="_blank" class="bg-red-600 px-4 py-2 rounded-lg block mb-3">Assine já</a>
+        <img src="https://i.imgur.com/3y6Zt0Q.png" alt="QR Code 12 meses" class="mx-auto w-32">
+      </div>
+    </div>
+  </section>
+
+  <!-- Assista Aqui -->
+  <section class="p-6 text-center">
+    <h2 class="text-2xl font-bold mb-4">Assista Aqui</h2>
+    <a href="http://starweb.webplayer.one" target="_blank" 
+       class="bg-blue-600 px-6 py-3 rounded-lg">Abrir Player</a>
+  </section>
+
+  <!-- Ícones Flutuantes -->
+  <div class="fixed bottom-4 right-4 flex flex-col space-y-3">
+    <a href="https://wa.me/5544999285482" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+           alt="WhatsApp" class="w-12 h-12 rounded-full shadow-lg">
+    </a>
+    <a href="https://t.me/+5544999285482" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" 
+           alt="Telegram" class="w-12 h-12 rounded-full shadow-lg">
+    </a>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Banner rotativo
+    const imagens = [
+      "https://image.tmdb.org/t/p/original/6DrHO1jr3qVrViUO6s6kFiAGM7.jpg", // La Casa de Papel
+      "https://image.tmdb.org/t/p/original/or06FN3Dka5tukK1e9sl16pB3iy.jpg", // Vingadores Ultimato
+      "https://i.imgur.com/ijZ8sG4.jpg"  // Champions League
+    ];
+    let idx = 0;
+    setInterval(() => {
+      idx = (idx + 1) % imagens.length;
+      document.getElementById("banner").src = imagens[idx];
+    }, 3000);
+
+    // Limite de 2 testes por número
+    const tentativas = {};
+    document.getElementById("testeForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const nome = document.getElementById("nome").value;
+      const telefone = document.getElementById("telefone").value;
+      if (!tentativas[telefone]) tentativas[telefone] = 0;
+
+      if (tentativas[telefone] >= 2) {
+        window.open("https://wa.me/5544999285482?text=Já%20utilizei%20meus%20testes%20e%20quero%20assinar", "_blank");
+      } else {
+        tentativas[telefone]++;
+        window.open(`https://wa.me/5544999285482?text=Teste%20ativado%20para%20${nome}%20(${telefone})`, "_blank");
+      }
+    });
+  </script>
+</body>
+</html>
