@@ -5,10 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Homeplay</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-    body { background: #000; color: #fff; text-align: center; overflow-x: hidden; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+      text-align: center;
+    }
 
-    /* Cabeçalho */
+    /* Banner rotativo */
+    .banner {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+    }
+    .banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: fade 20s infinite;
+    }
+    @keyframes fade {
+      0% {opacity: 1;}
+      33% {opacity: 0;}
+      66% {opacity: 1;}
+    }
+
     header {
       background: rgba(0,0,0,0.85);
       padding: 15px;
@@ -23,42 +51,15 @@
       text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff;
     }
     header h1 span { color: blue; }
-    header nav button {
-      margin-left: 10px;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 5px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .watch-btn { background: #fff; color: #000; }
-    .subscribe-btn { background: red; color: #fff; }
-
-    /* Banner rotativo */
-    .banner { width: 100%; max-height: 320px; overflow: hidden; position: relative; }
-    .banner .slides { display: flex; animation: slide 15s infinite; }
-    .banner img {
-      width: 100%;
-      height: 320px;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
-    @keyframes slide {
-      0%, 30%   { transform: translateX(0); }
-      33%, 63%  { transform: translateX(-100%); }
-      66%, 96%  { transform: translateX(-200%); }
-      100%      { transform: translateX(0); }
-    }
 
     /* Login */
     .login {
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0,0,0,0.7);
       padding: 20px;
       margin: 20px;
       border-radius: 10px;
     }
     .login input {
-      display: block;
       width: 90%;
       margin: 10px auto;
       padding: 10px;
@@ -75,120 +76,115 @@
     }
 
     /* Planos */
-    .plans { padding: 20px; }
-    .plans h2 { margin-bottom: 15px; }
+    .plans {
+      padding: 20px;
+    }
     .plan {
-      background: rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.07);
       margin: 15px auto;
       padding: 20px;
       border-radius: 12px;
-      max-width: 360px;
+      max-width: 350px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.4);
     }
-    .plan h3 { margin-bottom: 10px; font-size: 20px; }
-    .plan p { margin: 5px 0; }
+    .plan h3 { margin-bottom: 8px; }
+    .plan p { margin-bottom: 10px; }
     .plan button {
       display: block;
       width: 90%;
       margin: 8px auto;
-      padding: 12px;
+      padding: 10px;
       border: none;
       border-radius: 6px;
       cursor: pointer;
       font-weight: bold;
     }
-    .whatsapp-btn { background: red; color: #fff; }
+    .whatsapp-btn { background: rgba(0,128,0,0.85); color: #fff; }
     .pay-btn { background: rgba(255,255,255,0.9); color: #000; }
-    .qrcode {
+    .qrcode img {
       margin-top: 10px;
-      background: #fff;
-      padding: 10px;
-      border-radius: 8px;
+      width: 120px;
+      height: 120px;
     }
-    .qrcode img { width: 120px; }
 
-    /* Botões flutuantes */
+    /* Flutuantes */
     .floating {
       position: fixed;
       bottom: 20px;
       right: 20px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
     }
     .floating a img {
       width: 55px;
       height: 55px;
       border-radius: 50%;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
     }
 
-    /* Responsividade */
-    @media (max-width: 768px) {
-      header { flex-direction: column; }
-      .banner { max-height: 220px; }
-      .banner img { height: 220px; }
-      .plan { max-width: 90%; }
+    /* Mobile */
+    @media(max-width:768px) {
+      .banner { height: 200px; }
+      .plan { max-width: 95%; }
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Home<span>play</span></h1>
-    <nav>
-      <button class="watch-btn" onclick="window.open('http://starweb.webplayer.one','_blank')">Assista agora</button>
-      <button class="subscribe-btn" onclick="document.querySelector('.plans').scrollIntoView({behavior:'smooth'})">Assine já</button>
-    </nav>
   </header>
 
-  <!-- Banner Rotativo -->
-  <div class="banner">
-    <div class="slides">
-      <img src="https://image.tmdb.org/t/p/original/3V4kLQg0kSqPLctI5ziYWabAZYF.jpg" alt="Banner 1">
-      <img src="https://image.tmdb.org/t/p/original/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg" alt="Banner 2">
-      <img src="https://image.tmdb.org/t/p/original/5YZbUmjbMa3ClvSW1Wj3D6XGolb.jpg" alt="Banner 3">
-    </div>
-  </div>
+  <!-- Banner -->
+  <section class="banner">
+    <img src="https://image.tmdb.org/t/p/original/3V4kLQg0kSqPLctI5ziYWabAZYF.jpg" alt="Banner 1">
+  </section>
 
   <!-- Login -->
   <section class="login">
-    <h2>Teste gratuito — 6 horas</h2>
+    <h2>Login / Teste gratuito — 6 horas</h2>
     <input type="text" id="nome" placeholder="Nome completo" required>
     <input type="tel" id="telefone" placeholder="(44) 99928-5482" required>
-    <button onclick="ativarTeste()">Ativar Teste</button>
+    <button onclick="ativarTeste()">Ativar Teste 6h</button>
     <p id="mensagem" style="margin-top:10px;color:yellow;"></p>
   </section>
 
   <!-- Planos -->
   <section class="plans">
-    <h2>Planos de Assinatura</h2>
+    <h2>Planos de Assinatura / Renovação</h2>
 
     <div class="plan">
       <h3>Plano Mensal</h3>
       <p><strong>R$ 19,90</strong></p>
       <button class="whatsapp-btn" onclick="window.open('https://wa.me/5544999285482','_blank')">Assine já (WhatsApp)</button>
-      <button class="pay-btn" onclick="window.open('https://mpago.la/25CCQgV','_blank')">Pagar com MercadoPago</button>
-      <div class="qrcode"><img src="https://i.ibb.co/0jFJ0mS/qrcode1.png" alt="QR Code Mensal"></div>
+      <button class="pay-btn" onclick="window.open('https://mpago.la/25CCQgV','_blank')">Pagar (MercadoPago)</button>
+      <div class="qrcode">
+        <img src="https://i.ibb.co/SEU-LINK-MENSAL.png" alt="QR Code Mensal">
+      </div>
     </div>
 
     <div class="plan">
       <h3>Plano Semestral</h3>
       <p><strong>R$ 100,00</strong></p>
       <button class="whatsapp-btn" onclick="window.open('https://wa.me/5544999285482','_blank')">Assine já (WhatsApp)</button>
-      <button class="pay-btn" onclick="window.open('https://mpago.la/2HKEXeN','_blank')">Pagar com MercadoPago</button>
-      <div class="qrcode"><img src="https://i.ibb.co/mz7QCy6/qrcode2.png" alt="QR Code 6 meses"></div>
+      <button class="pay-btn" onclick="window.open('https://mpago.la/2HKEXeN','_blank')">Pagar (MercadoPago)</button>
+      <div class="qrcode">
+        <img src="https://i.ibb.co/SEU-LINK-SEMESTRAL.png" alt="QR Code Semestral">
+      </div>
     </div>
 
     <div class="plan">
       <h3>Plano Anual</h3>
       <p><strong>R$ 180,00</strong></p>
       <button class="whatsapp-btn" onclick="window.open('https://wa.me/5544999285482','_blank')">Assine já (WhatsApp)</button>
-      <button class="pay-btn" onclick="window.open('https://mpago.la/1zaQU6s','_blank')">Pagar com MercadoPago</button>
-      <div class="qrcode"><img src="https://i.ibb.co/5FK2V5H/qrcode3.png" alt="QR Code 12 meses"></div>
+      <button class="pay-btn" onclick="window.open('https://mpago.la/1zaQU6s','_blank')">Pagar (MercadoPago)</button>
+      <div class="qrcode">
+        <img src="https://i.ibb.co/SEU-LINK-ANUAL.png" alt="QR Code Anual">
+      </div>
     </div>
   </section>
 
-  <!-- Botões Flutuantes -->
+  <!-- Flutuantes -->
   <div class="floating">
     <a href="https://wa.me/5544999285482" target="_blank">
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
