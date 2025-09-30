@@ -6,18 +6,8 @@
   <title>Homeplay</title>
   <meta name="description" content="Mais de 85 mil conteúdos: filmes, séries, canais ao vivo, esportes, infantil, realitys, noticiário, religioso, adulto e muito mais. Tudo em um único lugar.">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
-    body {
-      background: #000;
-      color: #fff;
-      overflow-x: hidden;
-      text-align: center;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { background: #000; color: #fff; overflow-x: hidden; text-align: center; }
 
     /* Cabeçalho */
     header {
@@ -33,14 +23,12 @@
       color: red;
       text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff;
     }
-    header h1 span {
-      color: blue;
-    }
+    header h1 span { color: blue; }
     header nav button {
       margin-left: 10px;
       padding: 8px 16px;
       border: none;
-      border-radius: 5px;
+      border-radius: 6px;
       font-weight: bold;
       cursor: pointer;
     }
@@ -48,44 +36,43 @@
     .subscribe-btn { background: red; color: #fff; }
 
     /* Banner rotativo */
-    .banner {
-      width: 100%;
-      height: 350px;
-      overflow: hidden;
-      position: relative;
-    }
+    .banner { width: 100%; height: 350px; overflow: hidden; position: relative; }
     .banner img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: none;
+      width: 100%; height: 100%; object-fit: cover; display: none;
     }
-    .banner img.active {
-      display: block;
-    }
+    .banner img.active { display: block; }
 
     /* Descrição */
     .descricao {
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.75);
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.08);
       color: white;
       max-width: 900px;
       margin: 20px auto;
-      border-radius: 12px;
+      border-radius: 16px;
       font-size: 18px;
-      line-height: 1.6;
+      line-height: 1.7;
+      text-align: left;
     }
     .descricao h2 {
       color: #ff3333;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
+      font-size: 22px;
+      text-align: center;
+    }
+    .descricao p { margin-bottom: 12px; }
+    .descricao strong {
+      color: #fff;
+      font-weight: bold;
     }
 
-    /* Formulário de teste */
+    /* Login */
     .login {
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(255, 255, 255, 0.08);
       padding: 20px;
-      margin: 20px;
-      border-radius: 10px;
+      margin: 20px auto;
+      border-radius: 12px;
+      max-width: 400px;
     }
     .login h2 { margin-bottom: 15px; }
     .login input {
@@ -94,44 +81,53 @@
       margin: 10px auto;
       padding: 10px;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
     }
     .login button {
-      background: blue;
+      background: linear-gradient(45deg, #0066ffcc, #00ccffcc);
       color: #fff;
       padding: 12px 25px;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
-    }
-
-    /* Planos */
-    .plans {
-      padding: 20px;
-    }
-    .plan {
-      background: rgba(255,255,255,0.08);
-      margin: 15px auto;
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 350px;
+      font-weight: bold;
       transition: 0.3s;
     }
-    .plan:hover {
-      background: rgba(255,255,255,0.15);
+    .login button:hover { opacity: 0.85; }
+
+    /* Planos */
+    .plans { padding: 30px 15px; }
+    .plans h2 { margin-bottom: 20px; font-size: 22px; }
+
+    .plan {
+      margin: 15px auto;
+      padding: 25px;
+      border-radius: 16px;
+      max-width: 350px;
+      transition: 0.3s;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.2);
     }
-    .plan h3 { margin-bottom: 10px; color: #ff3333; }
-    .plan p { margin: 5px 0; }
+    .plan h3 { margin-bottom: 10px; font-size: 20px; }
+    .plan p { margin: 6px 0; font-size: 16px; }
     .plan button {
       margin: 8px;
       padding: 10px 20px;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
+      transition: 0.3s;
     }
-    .whatsapp-btn { background: green; color: white; }
-    .pay-btn { background: #fff; color: #000; }
+    .whatsapp-btn { background: rgba(0, 200, 0, 0.8); color: white; }
+    .whatsapp-btn:hover { background: rgba(0, 200, 0, 1); }
+    .pay-btn { background: rgba(255, 255, 255, 0.85); color: #000; }
+    .pay-btn:hover { background: #fff; }
+
+    /* Diferentes cores para planos */
+    .plan.mensal { background: rgba(255, 99, 132, 0.15); }
+    .plan.semestral { background: rgba(54, 162, 235, 0.15); }
+    .plan.anual { background: rgba(75, 192, 192, 0.15); }
 
     /* Botões flutuantes */
     .floating {
@@ -179,20 +175,20 @@
 
   <!-- Descrição -->
   <section class="descricao">
-    <h2>Mais de 85 mil conteúdos para você!</h2>
+    <h2><strong>Mais de 85 mil conteúdos</strong> para você!</h2>
     <p>
-      Tenha acesso a um catálogo completo com <strong>filmes, séries e canais ao vivo</strong> em alta qualidade.  
-      Tudo o que você sempre quis <strong>em um único lugar</strong>!
+      Tenha acesso a um catálogo completo com <strong>filmes</strong>, <strong>séries</strong> e <strong>canais ao vivo</strong> em alta qualidade.  
+      Tudo o que você sempre quis <strong>em um único lugar</strong>.
     </p>
     <p>
-      Aproveite <strong>reality shows, esportes, conteúdo infantil, noticiários, religioso, conteúdo adulto</strong> e muito mais.  
+      Aproveite <strong>reality shows</strong>, <strong>esportes</strong>, <strong>conteúdo infantil</strong>, <strong>noticiários</strong>, <strong>religioso</strong>, <strong>conteúdo adulto</strong> e muito mais.  
       Diversão para toda a família em qualquer dispositivo.
     </p>
   </section>
 
   <!-- Login / Teste -->
   <section class="login">
-    <h2>Login / Teste gratuito — 6 horas</h2>
+    <h2>Teste gratuito — 6 horas</h2>
     <input type="text" id="nome" placeholder="Nome completo" required>
     <input type="tel" id="telefone" placeholder="(44) 99928-5482" required>
     <button onclick="ativarTeste()">Ativar Teste 6h</button>
@@ -201,9 +197,9 @@
 
   <!-- Planos -->
   <section class="plans">
-    <h2>Planos de Assinatura / Renovação</h2>
+    <h2>Planos de Assinatura</h2>
 
-    <div class="plan">
+    <div class="plan mensal">
       <h3>Plano Mensal</h3>
       <p><strong>R$ 19,90</strong></p>
       <p>1 mês • Renovação manual/automática</p>
@@ -211,7 +207,7 @@
       <button class="pay-btn" onclick="window.open('https://mpago.la/25CCQgV','_blank')">MercadoPago</button>
     </div>
 
-    <div class="plan">
+    <div class="plan semestral">
       <h3>Plano Semestral</h3>
       <p><strong>R$ 100,00</strong></p>
       <p>6 meses • Renovação automática</p>
@@ -219,7 +215,7 @@
       <button class="pay-btn" onclick="window.open('https://mpago.la/2HKEXeN','_blank')">MercadoPago</button>
     </div>
 
-    <div class="plan">
+    <div class="plan anual">
       <h3>Plano Anual</h3>
       <p><strong>R$ 180,00</strong></p>
       <p>12 meses • Renovação automática</p>
@@ -248,7 +244,7 @@
       images[current].classList.add("active");
     }, 3000);
 
-    // Limitador de teste + redirecionamento ao WhatsApp
+    // Teste + redirecionamento ao WhatsApp
     function ativarTeste() {
       const telefone = document.getElementById("telefone").value;
       let testes = localStorage.getItem(telefone) || 0;
