@@ -18,7 +18,7 @@
       text-align: center;
     }
 
-    /* Banner rotativo */
+    /* Banner */
     .banner {
       position: relative;
       width: 100%;
@@ -29,19 +29,14 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      animation: fade 20s infinite;
-    }
-    @keyframes fade {
-      0% {opacity: 1;}
-      33% {opacity: 0;}
-      66% {opacity: 1;}
     }
 
+    /* Header */
     header {
       background: rgba(0,0,0,0.85);
       padding: 15px;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
     }
     header h1 {
@@ -80,12 +75,12 @@
       padding: 20px;
     }
     .plan {
-      background: rgba(255,255,255,0.07);
       margin: 15px auto;
       padding: 20px;
       border-radius: 12px;
       max-width: 350px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      color: #fff;
     }
     .plan h3 { margin-bottom: 8px; }
     .plan p { margin-bottom: 10px; }
@@ -101,11 +96,11 @@
     }
     .whatsapp-btn { background: rgba(0,128,0,0.85); color: #fff; }
     .pay-btn { background: rgba(255,255,255,0.9); color: #000; }
-    .qrcode img {
-      margin-top: 10px;
-      width: 120px;
-      height: 120px;
-    }
+
+    /* Cores modernas */
+    .mensal { background: rgba(255, 99, 71, 0.25); }      /* vermelho suave */
+    .semestral { background: rgba(30, 144, 255, 0.25); }  /* azul moderno */
+    .anual { background: rgba(50, 205, 50, 0.25); }       /* verde claro */
 
     /* Flutuantes */
     .floating {
@@ -137,7 +132,7 @@
 
   <!-- Banner -->
   <section class="banner">
-    <img src="https://image.tmdb.org/t/p/original/3V4kLQg0kSqPLctI5ziYWabAZYF.jpg" alt="Banner 1">
+    <img src="https://image.tmdb.org/t/p/original/3V4kLQg0kSqPLctI5ziYWabAZYF.jpg" alt="Banner">
   </section>
 
   <!-- Login -->
@@ -153,38 +148,29 @@
   <section class="plans">
     <h2>Planos de Assinatura / Renovação</h2>
 
-    <div class="plan">
+    <div class="plan mensal">
       <h3>Plano Mensal</h3>
       <p><strong>R$ 19,90</strong></p>
       <button class="whatsapp-btn" onclick="window.open('https://wa.me/5544999285482','_blank')">Assine já (WhatsApp)</button>
-      <button class="pay-btn" onclick="window.open('https://mpago.la/25CCQgV','_blank')">Pagar (MercadoPago)</button>
-      <div class="qrcode">
-        <img src="https://i.ibb.co/SEU-LINK-MENSAL.png" alt="QR Code Mensal">
-      </div>
+      <button class="pay-btn" onclick="window.open('https://mpago.la/25CCQgV','_blank')">Pagar com MercadoPago</button>
     </div>
 
-    <div class="plan">
+    <div class="plan semestral">
       <h3>Plano Semestral</h3>
       <p><strong>R$ 100,00</strong></p>
       <button class="whatsapp-btn" onclick="window.open('https://wa.me/5544999285482','_blank')">Assine já (WhatsApp)</button>
-      <button class="pay-btn" onclick="window.open('https://mpago.la/2HKEXeN','_blank')">Pagar (MercadoPago)</button>
-      <div class="qrcode">
-        <img src="https://i.ibb.co/SEU-LINK-SEMESTRAL.png" alt="QR Code Semestral">
-      </div>
+      <button class="pay-btn" onclick="window.open('https://mpago.la/2HKEXeN','_blank')">Pagar com MercadoPago</button>
     </div>
 
-    <div class="plan">
+    <div class="plan anual">
       <h3>Plano Anual</h3>
       <p><strong>R$ 180,00</strong></p>
       <button class="whatsapp-btn" onclick="window.open('https://wa.me/5544999285482','_blank')">Assine já (WhatsApp)</button>
-      <button class="pay-btn" onclick="window.open('https://mpago.la/1zaQU6s','_blank')">Pagar (MercadoPago)</button>
-      <div class="qrcode">
-        <img src="https://i.ibb.co/SEU-LINK-ANUAL.png" alt="QR Code Anual">
-      </div>
+      <button class="pay-btn" onclick="window.open('https://mpago.la/1zaQU6s','_blank')">Pagar com MercadoPago</button>
     </div>
   </section>
 
-  <!-- Flutuantes -->
+  <!-- Botões Flutuantes -->
   <div class="floating">
     <a href="https://wa.me/5544999285482" target="_blank">
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
